@@ -72,7 +72,7 @@ class ppt2Image:
 
 
 """Test Code""" 
-
+#This is some change I've made.
 # Get instance of ppt2
 prs = ppt2Image("M:/Brad_Slide_Updates2/Practice/")
 #prs.saveAsJPG("EquityREITReturnsduringaPeriodofRisingInterestRates.pptx", "M:/Brad_Slide_Updates2/Practice/")
