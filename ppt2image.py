@@ -69,9 +69,6 @@ class ppt2Image:
 	def test(self):
 		return self.location
 
-sdfadfsdf
-
-
 
 """Test Code""" 
 
