@@ -44,11 +44,11 @@ def copyUpdatedSlides(directory, updated):
 class ppt2Image:
 	"""This class processes powerpoint files as images"""	
 	
-	# Initialize powerpoint located in path_to_ppt 
+	# Initialize powerpoint located in directory
 	def __init__(self, directory): 
 		self.location = directory
 
-	# Save a powerpoint file in path_to_ppt as a JPG named "Slide1" in the same directory
+	# Save a powerpoint file in directory as a JPG named "Slide1" in the same directory
 	def saveAsJPG(self, pptfile, directory):
 		# Make sure no filename has spaces in it
 		[os.rename(l, l.replace(' ', '')) for l in directory if ' ' in l]
@@ -63,7 +63,7 @@ class ppt2Image:
 		# Close ppt
 		powerpoint.Quit()
 
-	# Rename JPG image "Slide1.JPG" to the (unspaced) ppt file it refers to
+	# Rename JPG image "Slide<num>.JPG" to the (unspaced) ppt file it refers to
 	def renameJPG(self, pptfile, directory):
 		gen_name = re.compile('^Slide[0-9]+.JPG$')
 		for l in os.listdir(directory):
@@ -75,7 +75,7 @@ class ppt2Image:
 					os.rename(fullJPGpath, newJPGpath)
 
 
-	# Crop the blue edges off each JPG image, resize, and save as a JPG again
+	# Crop the blue edges off each JPG image, resize, and save as a PDF
 	def cropAndResize(self, jpgfile, directory, res_val):
 		imgpath = directory+jpgfile
 		outfile = imgpath.replace("jpg", "pdf")
@@ -90,9 +90,6 @@ class ppt2Image:
 		im.thumbnail((575, 420), Image.ANTIALIAS)
 		# Save edited image as pdf
 		im.save(outfile, "PDF", resolution = res_val)
-
-	def test(self):
-		return self.location
 
 """Implement the above functions for a given date and updated list""" 
 # Make copies of all updated files in a new directory
